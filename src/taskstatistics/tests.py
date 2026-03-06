@@ -69,12 +69,12 @@ class TasksStatisticTest(TestCase):
         request = HttpRequest()
 
         """Annotate a request object with a session"""
-        middleware = SessionMiddleware()
+        middleware = SessionMiddleware(get_response=lambda x: x)
         middleware.process_request(request)
         request.session.save()
 
         """Annotate a request object with a messages"""
-        middleware = MessageMiddleware()
+        middleware = MessageMiddleware(get_response=lambda x: x)
         middleware.process_request(request)
         request.session.save()
 
@@ -96,12 +96,12 @@ class TasksStatisticTest(TestCase):
         request = HttpRequest()
 
         """Annotate a request object with a session"""
-        middleware = SessionMiddleware()
+        middleware = SessionMiddleware(get_response=lambda x: x)
         middleware.process_request(request)
         request.session.save()
 
         """Annotate a request object with a messages"""
-        middleware = MessageMiddleware()
+        middleware = MessageMiddleware(get_response=lambda x: x)
         middleware.process_request(request)
         request.session.save()
 
@@ -125,7 +125,7 @@ class TasksStatisticTest(TestCase):
         #print(context)
         html_output = render_to_string('taskstatistics/overview.html', context)
         #print(html_output)
-        self.assertNotIn("<table" , html_output , "There shouln't be a html table on statistic overview page for non trainers.")
+        self.assertNotIn("<table" , html_output , "There shouldn't be a html table on statistic overview page for non trainers.")
         self.assertNotIn("median" , html_output )
         self.client.login(username='trainer', password='demo')
         responseC = self.client.get('/tasks/statistic')
@@ -158,12 +158,12 @@ class TasksStatisticTest(TestCase):
         request = HttpRequest()
 
         """Annotate a request object with a session"""
-        middleware = SessionMiddleware()
+        middleware = SessionMiddleware(get_response=lambda x: x)
         middleware.process_request(request)
         request.session.save()
 
         """Annotate a request object with a messages"""
-        middleware = MessageMiddleware()
+        middleware = MessageMiddleware(get_response=lambda x: x)
         middleware.process_request(request)
         request.session.save()
 
